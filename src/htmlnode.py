@@ -17,3 +17,7 @@ class HTMLNode():
             for key, value in self.props.items():
                 html_result_str += f'{key}="{value}" ' # HTML attributes always separated by space
             return html_result_str.strip() # remove leading or trailing spaces
+
+        def __repr__(self):
+            # !r calls __repr__ on each variable
+            return f"HTMLNode(tag={self.tag!r}, value={self.value!r}, children={self.children!r}, props={self.props!r})"
