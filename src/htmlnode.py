@@ -10,7 +10,7 @@ class HTMLNode():
 
     def props_to_html(self):
         if not self.props:
-            empty_props = " "
+            empty_props = ""
             return empty_props
 
         html_props = []
@@ -22,3 +22,20 @@ class HTMLNode():
     def __repr__(self):
         # !r calls __repr__ on each variable
         return f"HTMLNode(tag={self.tag!r}, value={self.value!r}, children={self.children}, props={self.props})"
+
+class LeafNode(HTMLNode):
+    # No children should be set
+    # Value must be required
+    def __init__(self, tag, value, props=None):
+        super().__init__(tag, value, None, props)
+
+    # override parent method
+    def to_html(self):
+        if not self.value:
+            raise ValueError("No value found.")
+        if not self.tag:
+            return f"{self.value}"
+        props_string = self.props_to_html()
+        opening_tag = f"<{self.tag}{props_string}>"
+        closing_tag = f"</{self.tag}>"
+        return f"{opening_tag}{self.value}{closing_tag}"
