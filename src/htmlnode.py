@@ -6,7 +6,7 @@ class HTMLNode():
         self.props = props # Dictionary representing attributes of the html tag
 
     def to_html(self): # Children of class should override to render themselves as HTML
-        raise NotImplementedError("Method  'to_html' not implemented")
+        raise NotImplementedError("Method 'to_html' not implemented")
 
     def props_to_html(self):
         if not self.props:
